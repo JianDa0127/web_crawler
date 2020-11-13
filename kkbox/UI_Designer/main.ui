@@ -14,48 +14,38 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget_2">
+   <widget class="QPushButton" name="pushButton_OK_2">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>650</x>
       <y>80</y>
-      <width>160</width>
-      <height>51</height>
+      <width>91</width>
+      <height>32</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="song_verticalLayout">
-     <item>
-      <widget class="QLabel" name="songstyle_label">
-       <property name="text">
-        <string>類型</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="comboBox_songstyle">
-       <item>
-        <property name="text">
-         <string>新歌</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>單曲</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
+    <property name="text">
+     <string>OK</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Cancel">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>120</y>
+      <width>91</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cancel</string>
+    </property>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>80</y>
-      <width>160</width>
+      <x>41</x>
+      <y>81</y>
+      <width>106</width>
       <height>51</height>
      </rect>
     </property>
@@ -111,18 +101,92 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="pushButton01">
+   <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>632</x>
-      <y>90</y>
-      <width>91</width>
-      <height>32</height>
+      <x>420</x>
+      <y>81</y>
+      <width>106</width>
+      <height>51</height>
      </rect>
     </property>
-    <property name="text">
-     <string>OK</string>
+    <layout class="QVBoxLayout" name="lang_verticalLayout">
+     <item>
+      <widget class="QLabel" name="lang_label">
+       <property name="text">
+        <string>曲風</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox_lang">
+       <item>
+        <property name="text">
+         <string>本地</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>簡中</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>日文</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>英文</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>韓文</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>231</x>
+      <y>81</y>
+      <width>80</width>
+      <height>51</height>
+     </rect>
     </property>
+    <layout class="QVBoxLayout" name="release_verticalLayout">
+     <item>
+      <widget class="QLabel" name="release_label">
+       <property name="text">
+        <string>類型</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox_release">
+       <item>
+        <property name="text">
+         <string>新歌</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>單曲</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

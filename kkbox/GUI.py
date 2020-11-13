@@ -3,6 +3,8 @@ from PyQt5.QtWidgets import *
 import sys
 sys.path.append('/Users/glow/Desktop/IECS/Data_Science_and_GUI/group_demo/web_crawler/kkbox/UI_Designer')
 from main_screen import Ui_MainWindow
+import KKboxCrawler
+import datetime
 import unittest
 
 
@@ -14,14 +16,16 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         # 狀態列功能設置
         self.retranslateUi(self)
         self.actionClose.triggered.connect(app.exit)
-        # 取得comboBox_place 和 comboBox_songstyle的值
-        self.pushButton01.clicked.connect(self.get_place_comboBoxValue)
+        # 取得comboBox_place, comboBox_release, comboBox_lang的值
+        self.pushButton01.clicked.connect(self.get_comboBoxValue)
     # 地區設置
-    def get_place_comboBoxValue(self):
+    def get_comboBoxValue(self):
         place_select_value = self.comboBox_place.currentText()
-        songstyle_select_value = self.comboBox_songstyle.currentText()
+        release_select_value = self.comboBox_release.currentText()
+        lang_select_value = self.comboBox_lang.currentText()
         print(place_select_value)
-        print(songstyle_select_value)
+        print(release_select_value)
+        print(lang_select_value)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

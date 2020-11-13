@@ -84,7 +84,7 @@
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>220</x>
       <y>40</y>
       <width>160</width>
       <height>61</height>
@@ -117,6 +117,29 @@
      </item>
     </layout>
    </widget>
+   <widget class="QScrollArea" name="result_scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>39</x>
+      <y>139</y>
+      <width>531</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>529</width>
+       <height>369</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -127,8 +150,112 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionRecent"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuSong">
+    <property name="title">
+     <string>Song</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuControl">
+    <property name="title">
+     <string>Control</string>
+    </property>
+    <addaction name="actionPlay"/>
+    <addaction name="actionPause"/>
+    <addaction name="actionPrevious_song"/>
+    <addaction name="actionNext_song"/>
+    <addaction name="separator"/>
+    <addaction name="actionVolume_up"/>
+    <addaction name="actionVolume_down"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuAccount">
+    <property name="title">
+     <string>Account</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionkkbox_help"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuSong"/>
+   <addaction name="menuView"/>
+   <addaction name="menuControl"/>
+   <addaction name="menuAccount"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionRecent">
+   <property name="text">
+    <string>Recent</string>
+   </property>
+  </action>
+  <action name="actionkkbox_help">
+   <property name="text">
+    <string>kkbox help</string>
+   </property>
+  </action>
+  <action name="actionPlay">
+   <property name="text">
+    <string>Play</string>
+   </property>
+  </action>
+  <action name="actionPause">
+   <property name="text">
+    <string>Pause</string>
+   </property>
+  </action>
+  <action name="actionPrevious_song">
+   <property name="text">
+    <string>Previous song</string>
+   </property>
+  </action>
+  <action name="actionNext_song">
+   <property name="text">
+    <string>Next song</string>
+   </property>
+  </action>
+  <action name="actionVolume_up">
+   <property name="text">
+    <string>Volume up</string>
+   </property>
+  </action>
+  <action name="actionVolume_down">
+   <property name="text">
+    <string>Volume down</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

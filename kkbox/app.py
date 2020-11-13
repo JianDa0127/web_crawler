@@ -1,5 +1,6 @@
-import KKboxCrawler
+from KKboxCrawler import KKboxCrawler,YT_search,CateType
 import datetime
+from yt_download import Download
 
 #參數說明
 # =============================================================================
@@ -19,13 +20,35 @@ DBY = (datetime.date.today() + datetime.timedelta(days=-2)).strftime('%Y-%m-%d')
 #print(DBY)
 
 #前天華語單曲日榜
-print(KKboxCrawler.KKboxCrawler('song','tw','tc','50','297',DBY))
+# print(KKboxCrawler('song','tw','tc','2','297',DBY))
 
 #昨天日語新歌日榜，取前5
-print(KKboxCrawler.KKboxCrawler('newrelease','tw','tc','5','308',DBY))
+# print(KKboxCrawler('newrelease','tw','tc','2','308',DBY))
 
-#爬台灣地區有列入的音樂曲風 KKboxCrawler.CateType(Lang,Area)
-print(KKboxCrawler.CateType('tc','tw'))
+#爬台灣地區有列入的音樂曲風 CateType(Lang,Area)
+# print(CateType('tc','tw'))
 
-#爬日本地區有列入的音樂曲風 KKboxCrawler.CateType(Lang,Area)
-print(KKboxCrawler.CateType('tc','jp'))
+#爬日本地區有列入的音樂曲風 CateType(Lang,Area)
+# print(CateType('tc','jp'))
+
+#爬華語單曲前幾名的yt搜尋連結
+# yt URL = 'https://www.youtube.com/watch?v=' + 'ytID'
+data = (KKboxCrawler('song','tw','tc','5','297',Yday))
+data_songname = [data[i]['SongName'] for i in range(len(data))]
+ytURL,ytURLfail = [],[]
+rk=0
+for Name in data_songname:
+    rk+=1
+    try:
+        ytURL.append([str('%02d'%rk)+'_'+Name,YT_search(Name)])
+    except:
+        ytURLfail.append([rk,Name]) #因為延遲而沒抓到的網址
+print('ytURL:',ytURL)
+print('ytURL_fail:',ytURLfail)
+# 下載目標檔案
+for (name,ytid) in  ytURL:
+    Download(name,ytid)
+
+
+
+

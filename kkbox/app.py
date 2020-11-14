@@ -1,6 +1,7 @@
 from KKboxCrawler import KKboxCrawler,YT_search,CateType
 import datetime
 from yt_download import Download
+from pprint import pprint
 
 #參數說明
 # =============================================================================
@@ -15,9 +16,9 @@ from yt_download import Download
 
 #設定日期
 Yday = (datetime.date.today() + datetime.timedelta(days=-1)).strftime('%Y-%m-%d')
-#print(Yday)
+#print(Yday) #昨天
 DBY = (datetime.date.today() + datetime.timedelta(days=-2)).strftime('%Y-%m-%d')
-#print(DBY)
+#print(DBY) #前天
 
 #前天華語單曲日榜
 # print(KKboxCrawler('song','tw','tc','2','297',DBY))
@@ -32,22 +33,18 @@ DBY = (datetime.date.today() + datetime.timedelta(days=-2)).strftime('%Y-%m-%d')
 # print(CateType('tc','jp'))
 
 #爬華語單曲前幾名的yt搜尋連結
-# yt URL = 'https://www.youtube.com/watch?v=' + 'ytID'
-data = (KKboxCrawler('song','tw','tc','5','297',Yday))
+data = (KKboxCrawler('song','tw','tc','10','104',Yday))
 data_songname = [data[i]['SongName'] for i in range(len(data))]
-ytURL,ytURLfail = [],[]
+ytURL = []
 rk=0
 for Name in data_songname:
     rk+=1
-    try:
-        ytURL.append([str('%02d'%rk)+'_'+Name,YT_search(Name)])
-    except:
-        ytURLfail.append([rk,Name]) #因為延遲而沒抓到的網址
+    ytURL.append([str('%02d'%rk)+'_'+Name,YT_search(Name)])
 print('ytURL:',ytURL)
-print('ytURL_fail:',ytURLfail)
 # 下載目標檔案
 for (name,ytid) in  ytURL:
     Download(name,ytid)
+
 
 
 

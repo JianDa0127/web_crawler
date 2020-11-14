@@ -7,20 +7,23 @@ from selenium import webdriver
 # from pprint import pprint
 
 def YT_search(string):
-    url = 'https://www.youtube.com/results?search_query={}'.format(string)
-    
-    option = webdriver.ChromeOptions()
-    option.add_argument('headless')
-    
-    browser = webdriver.Chrome(chrome_options=option)
-    browser.get(url)
-    # time.sleep(1)
-    xpath = browser.find_element_by_xpath('/html/body/ytd-app/div/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[1]/div[1]/ytd-thumbnail/a')
-    href = xpath.get_attribute('href')
-    # print(href,type(href))
-    browser.close()
-    
-    return href.split('=')[1]
+    try:
+        url = 'https://www.youtube.com/results?search_query={}'.format(string)
+        
+        option = webdriver.ChromeOptions()
+        option.add_argument('headless')
+        
+        browser = webdriver.Chrome(chrome_options=option)
+        browser.get(url)
+        # time.sleep(1)
+        xpath = browser.find_element_by_xpath('/html/body/ytd-app/div/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[1]/div[1]/ytd-thumbnail/a')
+        href = xpath.get_attribute('href')
+        browser.close()
+        
+        return href.split('=')[1]
+    except:
+        print('YT_search fail {}'.format(string))
+        YT_search(string)
 
 def KKboxCrawler(SongType, Area, Lang, Rank, Cate, Date):
     url = 'https://kma.kkbox.com/charts/api/v1/daily?category={}&date={}&lang={}&limit={}&terr={}&type={}'.format(Cate,Date,Lang,Rank,Area,SongType)
@@ -34,32 +37,19 @@ def KKboxCrawler(SongType, Area, Lang, Rank, Cate, Date):
         #排名
         rk = Orig_data[i]['rankings']['this_period']
         rerurn_data['RK'] = rk                
-        #歌名
-        song_name = Orig_data[i]['song_name']
-        song_name = song_name.split(' -')[0] #把歌名基本處理
-        rerurn_data['SongName'] = song_name
+        #歌名 不取'-'後面的內容
+        rerurn_data['SongName'] = Orig_data[i]['song_name'].split(' -')[0]
         #歌手
-        artist = Orig_data[i]['artist_name']
-        rerurn_data['Artist'] = artist
+        rerurn_data['Artist'] = Orig_data[i]['artist_name']
         #專輯
-        album = Orig_data[i]['album_name']
-        rerurn_data['Album'] = album            
-        #縮圖 'https://i.kfs.io/album/global/' + imgURL + ',0v1/fit/160x160.jpg'
-        imgURL = Orig_data[i]['cover_image']['small']
-        # imgURL = imgURL.split('global/')[1]
-        # imgURL = imgURL.split(',')[0]
-        rerurn_data['ImgURL'] = imgURL         
+        rerurn_data['Album'] = Orig_data[i]['album_name']
+        #縮圖 'https://i.kfs.io/album/' + 保留的地方 + '/fit/160x160.jpg'
+        rerurn_data['ImgURL'] = Orig_data[i]['cover_image']['small'].split('album/')[1].split('/fit/')[0]
         #歌曲ID
-        song_id = Orig_data[i]['song_id']
-        rerurn_data['SongID'] = song_id      
-        # yt網址 (因為常常跑太久當掉，所以沒放進)
-        # yt URL = 'https://www.youtube.com/watch?v=' + 'ytID'
-        # YT_vid = YT_search(song_name)
-        # rerurn_data['ytID'] = YT_vid       
+        rerurn_data['SongID'] = Orig_data[i]['song_id'] 
         #上架日期         
         release_date = time.localtime(int(Orig_data[i]['release_date']))
-        release_date = time.strftime("%Y-%m-%d", release_date)
-        rerurn_data['ReleaseDate'] = release_date  
+        rerurn_data['ReleaseDate'] = time.strftime("%Y-%m-%d", release_date)
         
         ReturnData.append(rerurn_data)
     return ReturnData

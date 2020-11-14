@@ -35,8 +35,7 @@ def KKboxCrawler(SongType, Area, Lang, Rank, Cate, Date):
     for i in range(int(Rank)):
         rerurn_data={}
         #排名
-        rk = Orig_data[i]['rankings']['this_period']
-        rerurn_data['RK'] = rk                
+        rerurn_data['RK'] = Orig_data[i]['rankings']['this_period']
         #歌名 不取'-'後面的內容
         rerurn_data['SongName'] = Orig_data[i]['song_name'].split(' -')[0]
         #歌手

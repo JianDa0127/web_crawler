@@ -19,6 +19,7 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         # 播放器設置
         self.playlist = QMediaPlaylist(self)
         self.player = QMediaPlayer(self)
+        # 取得音樂檔案位置
         self.media_content = QMediaContent(QUrl.fromLocalFile('/Users/glow/Desktop/IECS/Data_Science_and_GUI/group_demo/web_crawler/kkbox/text.mp3'))
         # self.player.setMedia(QMediaContent(QUrl('http://example.com/music.mp3')))
         self.player.setMedia(self.media_content)

@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icon/kkbox_app_icon.png</normaloff>icon/kkbox_app_icon.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
@@ -26,7 +30,7 @@
       <x>350</x>
       <y>110</y>
       <width>541</width>
-      <height>51</height>
+      <height>64</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -205,58 +209,144 @@
      </item>
     </layout>
    </widget>
-   <widget class="QProgressBar" name="progressBar_player">
+   <widget class="QSlider" name="horizontalSlider_volume">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>60</y>
-      <width>401</width>
-      <height>21</height>
+      <x>910</x>
+      <y>30</y>
+      <width>91</width>
+      <height>22</height>
      </rect>
     </property>
-    <property name="value">
-     <number>24</number>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_5">
+   <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>370</x>
       <y>0</y>
-      <width>161</width>
-      <height>61</height>
+      <width>471</width>
+      <height>71</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="now_playing_verticalLayout">
-     <item>
-      <widget class="QLabel" name="now_playing_songname">
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QGraphicsView" name="graphicsView_album">
+     <property name="geometry">
+      <rect>
+       <x>-20</x>
+       <y>0</y>
+       <width>91</width>
+       <height>71</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="progressBar_player">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>50</y>
+       <width>401</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_5">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>0</y>
+       <width>161</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="now_playing_verticalLayout">
+      <item>
+       <widget class="QLabel" name="now_playing_songname">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="now_playing_album">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>231</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="1">
+      <widget class="QPushButton" name="pushButton_previous">
        <property name="text">
-        <string>TextLabel</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
+        <string>previous</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QLabel" name="now_playing_album">
+     <item row="0" column="3">
+      <widget class="QPushButton" name="pushButton_next">
        <property name="text">
-        <string>TextLabel</string>
+        <string>next</string>
        </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="pushButton_play">
+       <property name="text">
+        <string>play</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="pushButton_random">
+       <property name="text">
+        <string>random</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QPushButton" name="pushButton_repeat">
+       <property name="text">
+        <string>repeat</string>
        </property>
       </widget>
      </item>
     </layout>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView_album">
+   <widget class="QListWidget" name="queue_listWidget">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>10</y>
-      <width>91</width>
-      <height>71</height>
+      <x>920</x>
+      <y>110</y>
+      <width>256</width>
+      <height>511</height>
      </rect>
     </property>
    </widget>

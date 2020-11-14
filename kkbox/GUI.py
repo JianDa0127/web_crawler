@@ -20,6 +20,8 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         # 播放器設置
 
         # 播放器按鈕設置
+        # Icons made by <ahref="https://www.flaticon.com/authors/bqlqn"title = "bqlqn">bqlqn</a>from<ahref = "https://www.flaticon.com/"title = "Flaticon">www.flaticon.com</a>
+
         # self.pushButton_play.clicked.connect(self.playMusic)
         # self.pushButton_previous.clicked.connect(self.previousMusic)
         # self.pushButton_next.clicked.connect(self.nextMusic)

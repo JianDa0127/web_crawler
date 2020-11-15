@@ -217,191 +217,220 @@
    <widget class="QListWidget" name="playlist_listWidget">
     <property name="geometry">
      <rect>
-      <x>920</x>
-      <y>110</y>
+      <x>950</x>
+      <y>140</y>
       <width>256</width>
-      <height>511</height>
+      <height>521</height>
      </rect>
     </property>
    </widget>
-   <widget class="QFrame" name="frame_2">
+   <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>350</x>
       <y>0</y>
-      <width>1201</width>
-      <height>80</height>
+      <width>511</width>
+      <height>71</height>
      </rect>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QWidget" name="gridLayoutWidget_2">
+    <widget class="QGraphicsView" name="graphicsView_album">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>20</y>
-       <width>281</width>
-       <height>41</height>
+       <x>0</x>
+       <y>0</y>
+       <width>91</width>
+       <height>71</height>
       </rect>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="2">
-       <widget class="QPushButton" name="pushButton_play">
-        <property name="font">
-         <font>
-          <kerning>false</kerning>
-         </font>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
+    </widget>
+    <widget class="QProgressBar" name="player_progressBar">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>50</y>
+       <width>401</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="value">
+      <number>24</number>
+     </property>
+     <property name="textVisible">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_5">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>0</y>
+       <width>161</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="now_playing_verticalLayout">
+      <item>
+       <widget class="QLabel" name="now_playing_songname">
         <property name="text">
-         <string/>
+         <string>TextLabel</string>
         </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>icon/play.png</normaloff>
-          <normalon>icon/pause.png</normalon>icon/play.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>35</width>
-          <height>35</height>
-         </size>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
-      <item row="0" column="3">
-       <widget class="QPushButton" name="pushButton_next">
+      <item>
+       <widget class="QLabel" name="now_playing_album">
         <property name="text">
-         <string/>
+         <string>TextLabel</string>
         </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>icon/next.png</normaloff>icon/next.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QPushButton" name="pushButton_previous">
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>icon/previous.png</normaloff>icon/previous.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QPushButton" name="pushButton_random">
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>icon/shuffle-arrows.png</normaloff>icon/shuffle-arrows.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QPushButton" name="pushButton_repeat">
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>icon/repeat.png</normaloff>icon/repeat.png</iconset>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
-    <widget class="QFrame" name="frame">
+   </widget>
+   <widget class="QWidget" name="widget_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>10</y>
+      <width>261</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <widget class="QPushButton" name="pushButton_random">
      <property name="geometry">
       <rect>
-       <x>360</x>
+       <x>0</x>
        <y>10</y>
-       <width>471</width>
-       <height>71</height>
+       <width>61</width>
+       <height>32</height>
       </rect>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+     <property name="text">
+      <string/>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon/shuffle-arrows.png</normaloff>icon/shuffle-arrows.png</iconset>
      </property>
-     <widget class="QGraphicsView" name="graphicsView_album">
-      <property name="geometry">
-       <rect>
-        <x>-20</x>
-        <y>0</y>
-        <width>91</width>
-        <height>71</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QProgressBar" name="player_progressBar">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>50</y>
-        <width>401</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="value">
-       <number>24</number>
-      </property>
-      <property name="textVisible">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QWidget" name="verticalLayoutWidget_5">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>0</y>
-        <width>161</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="now_playing_verticalLayout">
-       <item>
-        <widget class="QLabel" name="now_playing_songname">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="now_playing_album">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+    </widget>
+    <widget class="QPushButton" name="pushButton_previous">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>10</y>
+       <width>61</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon/previous.png</normaloff>icon/previous.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_play">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>10</y>
+       <width>61</width>
+       <height>35</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <kerning>false</kerning>
+      </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon/play.png</normaloff>
+       <normalon>icon/pause.png</normalon>icon/play.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>16</width>
+       <height>16</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_next">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>10</y>
+       <width>61</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon/next.png</normaloff>icon/next.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_repeat">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>10</y>
+       <width>61</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon/repeat.png</normaloff>icon/repeat.png</iconset>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="widget_3" native="true">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>0</y>
+      <width>251</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>60</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
     </widget>
     <widget class="QWidget" name="gridLayoutWidget_3">
      <property name="geometry">
       <rect>
-       <x>850</x>
+       <x>80</x>
        <y>20</y>
-       <width>211</width>
-       <height>41</height>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
@@ -417,6 +446,45 @@
       </item>
      </layout>
     </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>30</y>
+       <width>60</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton_lyris">
+    <property name="geometry">
+     <rect>
+      <x>1080</x>
+      <y>90</y>
+      <width>101</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>lyris</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_playlist">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>90</y>
+      <width>101</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>playlist</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -85,6 +85,7 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.pushButton_repeat.clicked.connect(self.Music_mode_repeat)
         # self.pushButton_lyris.clicked.connect(self.lyris)
         self.pushButton_playlist.clicked.connect(self.playlist_setting)
+        self.song_Slider.sliderMoved.connect(self.update_position_func)
 
         # 取得comboBox_place, comboBox_release, comboBox_lang選取的值
         self.pushButton_OK.clicked.connect(self.get_comboBoxValue)
@@ -145,6 +146,11 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
     def get_position_func(self, song_position):
         # 音樂進度條
         self.song_Slider.setValue(song_position)
+
+    def update_position_func(self, song_progress):
+        self.player.setPosition(song_progress)
+        d_time = self.song_Slider.maximum() - song_progress
+        self.get_time_func(d_time)
 
     def volume_slider_func(self, value):
         # 音量條

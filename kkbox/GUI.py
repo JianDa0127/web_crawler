@@ -138,10 +138,10 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         seconds = int(d_time / 1000)
         minutes = int(seconds / 60)
         seconds -= minutes * 60
-        # if minutes == 0 and seconds == 0:
-        #     self.time_label.setText('--/--')
-        # else:
-        #     self.time_label.setText('{}:{}'.format(minutes, seconds))
+        if minutes == 0 and seconds == 0:
+            self.time_label.setText('--/--')
+        else:
+            self.time_label.setText('{}:{}'.format(minutes, seconds))
 
     def get_position_func(self, song_position):
         # 音樂進度條

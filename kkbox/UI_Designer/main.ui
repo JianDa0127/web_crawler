@@ -227,7 +227,7 @@
      </rect>
     </property>
     <property name="editTriggers">
-     <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
+     <set>QAbstractItemView::CurrentChanged|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
     </property>
     <property name="showDropIndicator" stdset="0">
      <bool>true</bool>
@@ -268,7 +268,7 @@
       <item>
        <widget class="QLabel" name="now_playing_song">
         <property name="text">
-         <string>TextLabel</string>
+         <string>Song</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -278,7 +278,7 @@
       <item>
        <widget class="QLabel" name="now_playing_album">
         <property name="text">
-         <string>TextLabel</string>
+         <string>Album</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -303,6 +303,22 @@
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
+    <widget class="QLabel" name="time_label">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>40</y>
+       <width>60</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>--/--</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="widget_2" native="true">
     <property name="geometry">
@@ -323,7 +339,11 @@
       </rect>
      </property>
      <property name="text">
-      <string>random</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon/shuffle-arrows.png</normaloff>icon/shuffle-arrows.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_previous">
@@ -336,7 +356,11 @@
       </rect>
      </property>
      <property name="text">
-      <string>previous</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon/previous.png</normaloff>icon/previous.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_play">
@@ -357,7 +381,12 @@
       <bool>false</bool>
      </property>
      <property name="text">
-      <string>play</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon/play.png</normaloff>
+       <normalon>icon/pause.png</normalon>icon/play.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -376,7 +405,11 @@
       </rect>
      </property>
      <property name="text">
-      <string>next</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon/next.png</normaloff>icon/next.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_repeat">
@@ -389,7 +422,11 @@
       </rect>
      </property>
      <property name="text">
-      <string>loop</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon/repeat.png</normaloff>icon/repeat.png</iconset>
      </property>
     </widget>
    </widget>
@@ -424,24 +461,38 @@
       </item>
      </layout>
     </widget>
-    <widget class="QGraphicsView" name="graphicsView_volumeDown">
+    <widget class="QPushButton" name="pushButton_volumeUp">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>30</x>
        <y>20</y>
-       <width>31</width>
-       <height>31</height>
+       <width>51</width>
+       <height>32</height>
       </rect>
      </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon/volume-down.png</normaloff>icon/volume-down.png</iconset>
+     </property>
     </widget>
-    <widget class="QGraphicsView" name="graphicsView_volumeUp">
+    <widget class="QPushButton" name="pushButton_volumeDown">
      <property name="geometry">
       <rect>
        <x>170</x>
        <y>20</y>
-       <width>31</width>
-       <height>31</height>
+       <width>51</width>
+       <height>32</height>
       </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>icon/volume-up.png</normaloff>icon/volume-up.png</iconset>
      </property>
     </widget>
    </widget>
@@ -468,7 +519,11 @@
      </rect>
     </property>
     <property name="text">
-     <string>playlist</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icon/playlist.png</normaloff>icon/playlist.png</iconset>
     </property>
    </widget>
    <widget class="QWidget" name="widget_4" native="true">

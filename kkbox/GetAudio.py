@@ -29,7 +29,7 @@ def get_audio(SongType, Area, Lang, Rank, Cate, Date):
         
         #儲存試聽檔案
         song_name = browser.find_element_by_xpath('/html/body/div[5]/div[2]/div[2]/div[1]/h1').text
-        song_name = song_name.split(' -')[0].split(' (')[0]
+        song_name = song_name.split(' -')[0].split(' (')[0].replace('?','')
         try:
             urlretrieve(audio.get_attribute('src'),"30s_{:02d}-{}.mp3".format(i-2 if i>32 else i-1,song_name))
             # print('[Success 30s download]',song_name)

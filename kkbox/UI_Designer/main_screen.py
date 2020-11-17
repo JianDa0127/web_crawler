@@ -99,7 +99,7 @@ class Ui_MainWindow(object):
         self.playlist_listWidget = QtWidgets.QListWidget(self.centralwidget)
         self.playlist_listWidget.setEnabled(True)
         self.playlist_listWidget.setGeometry(QtCore.QRect(930, 130, 256, 511))
-        self.playlist_listWidget.setEditTriggers(QtWidgets.QAbstractItemView.CurrentChanged|QtWidgets.QAbstractItemView.DoubleClicked|QtWidgets.QAbstractItemView.EditKeyPressed|QtWidgets.QAbstractItemView.SelectedClicked)
+        self.playlist_listWidget.setEditTriggers(QtWidgets.QAbstractItemView.CurrentChanged|QtWidgets.QAbstractItemView.DoubleClicked|QtWidgets.QAbstractItemView.EditKeyPressed)
         self.playlist_listWidget.setProperty("showDropIndicator", True)
         self.playlist_listWidget.setSelectionRectVisible(True)
         self.playlist_listWidget.setObjectName("playlist_listWidget")

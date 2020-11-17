@@ -12,6 +12,16 @@ from PyQt5.QtMultimedia import *
 from PyQt5.Qt import QUrl
 from main_screen import Ui_MainWindow
 
+# 設定路徑
+# current_dir = os.path.dirname(os.path.abspath(__file__))
+# music_dir = current_dir + r'/Ui_Designer/music_data'
+# music_files = os.listdir(music_dir)
+# image_dir = current_dir + r'^/Ui_Designer/icon'
+# print(current_dir)
+# print(music_dir)
+# print(music_files)
+# print(image_dir)
+
 class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self):
         # 主界面初始化
@@ -27,7 +37,7 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         # icon設定
         # Icons made by <ahref="https://www.flaticon.com/authors/bqlqn"title = "bqlqn">bqlqn</a>
         # from<ahref = "https://www.flaticon.com/"title = "Flaticon">www.flaticon.com</a>
-        # self.setWindowIcon(QIcon(image_root + '/icon/kkbox_app_icon.png'))
+
 
         # 播放器
         # self.fileName = ""
@@ -40,6 +50,7 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
 
         ## 進度條設置(macOS bug)
         self.player.durationChanged.connect(self.get_duration_func)
+        self.player.positionChanged.connect(self.get_time_func)
         self.player.positionChanged.connect(self.get_position_func)
         ## 音量設置
         self.volume_Slider.valueChanged.connect(self.volume_slider_func)
@@ -51,6 +62,8 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
             # self.player.setMedia(QMediaContent(QUrl('http://example.com/music.mp3')))
             # self.player.setMedia(self.media_content)
         self.playlist_listWidget.hide()
+        self.playlist_listWidget.itemDoubleClicked.connect(self.Music_Player)
+
         self.player.setPlaylist(self.playlist)
         self.media_list = ['{}/01. Wake Up, Get Up, Get Out There.mp3'.format(media_root),
                            '{}/04. Life Will Change.mp3'.format(media_root),
@@ -58,12 +71,9 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
                            ]
         for m in self.media_list:
             self.playlist.addMedia(QMediaContent(QUrl.fromLocalFile(m)))
-        self.playlist.setPlaybackMode(QMediaPlaylist.Sequential)
+        self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
         self.playlist_listWidget.addItems([m.split('/')[-1] for m in self.media_list])
         self.playlist.setCurrentIndex(self.playlist_listWidget.currentRow())
-        self.player.play()
-
-        print(self.playlist.playbackMode)
 
         # 狀態列功能設置
         self.retranslateUi(self)
@@ -87,9 +97,14 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.pushButton_playlist.clicked.connect(self.playlist_setting)
         self.song_Slider.sliderMoved.connect(self.update_position_func)
 
+
         # 取得comboBox_place, comboBox_release, comboBox_lang選取的值
         self.pushButton_OK.clicked.connect(self.get_comboBoxValue)
 
+    def Music_Player(self):
+        self.player.play()
+
+        print(self.playlist.playbackMode)
     def playMusic(self):
         # 播放音樂
         if self.player.state() == 1:
@@ -140,8 +155,10 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         seconds -= minutes * 60
         if minutes == 0 and seconds == 0:
             self.time_label.setText('--/--')
+        elif seconds < 10:
+            self.time_label.setText('{:2d}:0{}'.format(minutes, seconds))
         else:
-            self.time_label.setText('{}:{}'.format(minutes, seconds))
+            self.time_label.setText('{:2d}:{:2d}'.format(minutes, seconds))
 
     def get_position_func(self, song_position):
         # 音樂進度條

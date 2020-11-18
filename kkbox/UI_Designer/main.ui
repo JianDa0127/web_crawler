@@ -258,9 +258,9 @@
     <widget class="QWidget" name="verticalLayoutWidget_5">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>110</x>
        <y>0</y>
-       <width>161</width>
+       <width>301</width>
        <height>51</height>
       </rect>
      </property>
@@ -646,6 +646,28 @@
       <string>PushButton</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QListWidget" name="lyris_listWidget">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>130</y>
+      <width>256</width>
+      <height>511</height>
+     </rect>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::CurrentChanged|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+    </property>
+    <property name="showDropIndicator" stdset="0">
+     <bool>true</bool>
+    </property>
+    <property name="selectionRectVisible">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -1,8 +1,9 @@
 import time
+import unittest
 import os
 import sys
+# 測試介面檔位址
 # sys.path.append('/Users/glow/Desktop/IECS/Data_Science_and_GUI/group_demo/web_crawler/kkbox/UI_Designer')
-import unittest
 
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import *
@@ -13,40 +14,41 @@ from PyQt5.Qt import QUrl
 from main_screen import Ui_MainWindow
 
 # 設定路徑
-# current_dir = os.path.dirname(os.path.abspath(__file__))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+music_dir = current_dir + r'/music_data'
 # music_dir = current_dir + r'/Ui_Designer/music_data'
-# music_files = os.listdir(music_dir)
-# image_dir = current_dir + r'^/Ui_Designer/icon'
-# print(current_dir)
-# print(music_dir)
-# print(music_files)
-# print(image_dir)
+music_files = os.listdir(music_dir)
+image_dir = current_dir + r'/icon'
+# image_dir = current_dir + r'/Ui_Designer/icon'
+
+print(current_dir)
+print(music_dir)
+print(music_files)
+print(image_dir)
 
 class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self):
         # 主界面初始化
         super(MainWindow, self).__init__()
         self.setupUi(self)
+        self.init_action()
+        self.init_botton()
 
-        # 路徑設定
-        media_root = QFileInfo(__file__).absolutePath()
-        image_root = QFileInfo(__file__).absolutePath()
-        print(media_root)
-        print(image_root)
-
-        # icon設定
+        # icon來源
         # Icons made by <ahref="https://www.flaticon.com/authors/bqlqn"title = "bqlqn">bqlqn</a>
         # from<ahref = "https://www.flaticon.com/"title = "Flaticon">www.flaticon.com</a>
-
 
         # 播放器
         # self.fileName = ""
         # self.now_playing_song = ''
         self.playlist = QMediaPlaylist(self)
         self.player = QMediaPlayer(self)
-        ## 顯示歌名和專輯
-        self.now_playing_song.setText('Hello, World!')
+        ## 初始化歌名和專輯
+        self.now_playing_song.setText('Unknown')
         self.now_playing_album.setText('Unknown')
+
+        ## 歌詞列表設置
+        self.lyris_listWidget.hide()
 
         ## 進度條設置(macOS bug)
         self.player.durationChanged.connect(self.get_duration_func)
@@ -62,19 +64,24 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
             # self.player.setMedia(QMediaContent(QUrl('http://example.com/music.mp3')))
             # self.player.setMedia(self.media_content)
         self.playlist_listWidget.hide()
-        self.playlist_listWidget.itemDoubleClicked.connect(self.Music_Player)
-
         self.player.setPlaylist(self.playlist)
-        self.media_list = ['{}/01. Wake Up, Get Up, Get Out There.mp3'.format(media_root),
-                           '{}/04. Life Will Change.mp3'.format(media_root),
-                           '{}/17. Last Surprise.mp3'.format(media_root),
-                           ]
+
+        self.media_list = []
+        for i in music_files:
+            self.media_list.append('{}/{}'.format(music_dir, i))
+
         for m in self.media_list:
             self.playlist.addMedia(QMediaContent(QUrl.fromLocalFile(m)))
         self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
         self.playlist_listWidget.addItems([m.split('/')[-1] for m in self.media_list])
         self.playlist.setCurrentIndex(self.playlist_listWidget.currentRow())
 
+        self.playlist_listWidget.itemDoubleClicked.connect(self.Music_Player)
+
+        # 取得comboBox_place, comboBox_release, comboBox_lang選取的值
+        self.pushButton_OK.clicked.connect(self.get_comboBoxValue)
+
+    def init_action(self):
         # 狀態列功能設置
         self.retranslateUi(self)
         self.actionClose.triggered.connect(app.exit)
@@ -86,31 +93,29 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.actionRepeat.triggered.connect(self.Music_mode_repeat)
         # self.actionVolume_Up.triggered.connect(self)
         # self.actionVolume_Down.triggered.connect(self)
-
+    def init_botton(self):
         # 播放器按鈕設置
         self.pushButton_play.clicked.connect(self.playMusic)
         self.pushButton_previous.clicked.connect(self.previousMusic)
         self.pushButton_next.clicked.connect(self.nextMusic)
         self.pushButton_random.clicked.connect(self.Music_mode_random)
         self.pushButton_repeat.clicked.connect(self.Music_mode_repeat)
-        # self.pushButton_lyris.clicked.connect(self.lyris)
+        self.pushButton_lyris.clicked.connect(self.lyris_setting)
         self.pushButton_playlist.clicked.connect(self.playlist_setting)
         self.song_Slider.sliderMoved.connect(self.update_position_func)
 
-
-        # 取得comboBox_place, comboBox_release, comboBox_lang選取的值
-        self.pushButton_OK.clicked.connect(self.get_comboBoxValue)
-
-    def Music_Player(self):
+    def Music_Player(self, song_name):
+        self.now_playing_song.setText(song_name.text())
+        self.now_playing_album.setText('Persona5')
         self.player.play()
 
-        print(self.playlist.playbackMode)
     def playMusic(self):
         # 播放音樂
         if self.player.state() == 1:
             self.player.pause()
         else:
             self.player.play()
+
     def nextMusic(self):
         # 下一首歌
         if self.playlist.currentIndex() == self.playlist.mediaCount() - 1:
@@ -135,6 +140,12 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.playlist.setPlaybackMode(QMediaPlaylist.CurrentItemInLoop)
         print(self.playlist.playbackMode)
 
+    def lyris_setting(self):
+        # 歌詞
+        if self.lyris_listWidget.isHidden():
+            self.lyris_listWidget.show()
+        else:
+            self.lyris_listWidget.hide()
     def playlist_setting(self):
         # 播放列表
         if self.playlist_listWidget.isHidden():

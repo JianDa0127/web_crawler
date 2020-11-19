@@ -32,8 +32,8 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>110</y>
+      <x>320</x>
+      <y>140</y>
       <width>541</width>
       <height>64</height>
      </rect>
@@ -269,16 +269,6 @@
        <widget class="QLabel" name="now_playing_song">
         <property name="text">
          <string>Song</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="now_playing_album">
-        <property name="text">
-         <string>Album</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -535,28 +525,21 @@
       <height>401</height>
      </rect>
     </property>
-    <widget class="QScrollArea" name="scrollArea">
+    <widget class="QLabel" name="show_result_label">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>611</width>
-       <height>381</height>
+       <x>90</x>
+       <y>40</y>
+       <width>411</width>
+       <height>131</height>
       </rect>
      </property>
-     <property name="widgetResizable">
-      <bool>true</bool>
+     <property name="text">
+      <string>Result</string>
      </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>609</width>
-        <height>379</height>
-       </rect>
-      </property>
-     </widget>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="widget_5" native="true">
@@ -578,7 +561,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>本地音樂</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_2">
@@ -591,7 +574,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>串流音樂</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_3">
@@ -668,6 +651,39 @@
     <property name="selectionRectVisible">
      <bool>true</bool>
     </property>
+   </widget>
+   <widget class="QWidget" name="widget_6" native="true">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>80</y>
+      <width>631</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <widget class="QLineEdit" name="search_lineEdit">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>511</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_search">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>0</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Search</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

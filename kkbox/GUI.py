@@ -43,9 +43,9 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         # self.now_playing_song = ''
         self.playlist = QMediaPlaylist(self)
         self.player = QMediaPlayer(self)
-        ## 初始化歌名和專輯
+        ## 初始化歌名與顯示區塊
         self.now_playing_song.setText('Unknown')
-        self.now_playing_album.setText('Unknown')
+        self.show_result_label.setText('Unknown')
 
         ## 歌詞列表設置
         self.lyris_listWidget.hide()
@@ -77,7 +77,8 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.playlist.setCurrentIndex(self.playlist_listWidget.currentRow())
 
         self.playlist_listWidget.itemDoubleClicked.connect(self.Music_Player)
-
+        # 取得搜尋欄的輸入
+        self.pushButton_search.clicked.connect(self.search_result)
         # 取得comboBox_place, comboBox_release, comboBox_lang選取的值
         self.pushButton_OK.clicked.connect(self.get_comboBoxValue)
 
@@ -106,7 +107,6 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
 
     def Music_Player(self, song_name):
         self.now_playing_song.setText(song_name.text())
-        self.now_playing_album.setText('Persona5')
         self.player.play()
 
     def playMusic(self):
@@ -183,6 +183,12 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
     def volume_slider_func(self, value):
         # 音量條
         self.player.setVolume(value)
+
+    def search_result(self):
+        result_text = self.search_lineEdit.text()
+        print(result_text)
+        self.show_result_label.setText(result_text)
+        self.search_lineEdit.clear()
 
     def get_comboBoxValue(self):
         # 取得地區,歌曲類型,歌曲語言

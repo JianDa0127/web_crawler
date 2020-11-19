@@ -29,191 +29,6 @@
     <normaloff>icon/kkbox_app_icon.png</normaloff>icon/kkbox_app_icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="gridLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>140</y>
-      <width>541</width>
-      <height>64</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="1">
-      <layout class="QVBoxLayout" name="release_verticalLayout">
-       <item>
-        <widget class="QLabel" name="release_label">
-         <property name="text">
-          <string>類型</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="comboBox_release">
-         <item>
-          <property name="text">
-           <string>新歌</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>單曲</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="0" column="2">
-      <layout class="QVBoxLayout" name="lang_verticalLayout">
-       <item>
-        <widget class="QLabel" name="lang_label">
-         <property name="text">
-          <string>曲風</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="comboBox_lang">
-         <item>
-          <property name="text">
-           <string>本地</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>簡中</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>日文</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>英文</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>韓文</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="0" column="3">
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Preferred</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="0" column="4">
-      <layout class="QVBoxLayout" name="checkbutton_verticalLayout">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetDefaultConstraint</enum>
-       </property>
-       <item>
-        <widget class="QPushButton" name="pushButton_OK">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>OK</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_Cancel">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Cancel</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="0" column="0">
-      <layout class="QVBoxLayout" name="place_verticalLayout">
-       <item>
-        <widget class="QLabel" name="place_label">
-         <property name="text">
-          <string>地區</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="comboBox_place">
-         <item>
-          <property name="text">
-           <string>台灣</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>日本</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>全球</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>歐美</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>香港</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>新加坡</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>馬來西亞</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
    <widget class="QListWidget" name="playlist_listWidget">
     <property name="enabled">
      <bool>true</bool>
@@ -299,7 +114,7 @@
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="picture_label">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -525,8 +340,8 @@
    <widget class="QWidget" name="widget_4" native="true">
     <property name="geometry">
      <rect>
-      <x>279</x>
-      <y>229</y>
+      <x>270</x>
+      <y>140</y>
       <width>611</width>
       <height>121</height>
      </rect>
@@ -552,9 +367,9 @@
     <property name="geometry">
      <rect>
       <x>-1</x>
-      <y>179</y>
+      <y>129</y>
       <width>251</width>
-      <height>461</height>
+      <height>511</height>
      </rect>
     </property>
     <widget class="QPushButton" name="pushButton_local">
@@ -574,7 +389,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>80</y>
+       <y>60</y>
        <width>251</width>
        <height>32</height>
       </rect>
@@ -582,6 +397,256 @@
      <property name="text">
       <string>串流音樂</string>
      </property>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>160</y>
+       <width>106</width>
+       <height>62</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="area_verticalLayout">
+      <item>
+       <widget class="QLabel" name="area_label">
+        <property name="text">
+         <string>地區</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox_area">
+        <item>
+         <property name="text">
+          <string>台灣</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>香港</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>日本</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>新加坡</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>馬來西亞</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>240</y>
+       <width>127</width>
+       <height>62</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="release_verticalLayout">
+      <item>
+       <widget class="QLabel" name="songtype_label">
+        <property name="text">
+         <string>類型</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox_songtype">
+        <item>
+         <property name="text">
+          <string>新歌</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>單曲</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>310</y>
+       <width>111</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="cate_verticalLayout">
+      <item>
+       <widget class="QLabel" name="cate_label">
+        <property name="text">
+         <string>曲風</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox_cate">
+        <item>
+         <property name="text">
+          <string>華語</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>西洋</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>日語</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>韓語</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>台語</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>粵語</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>綜合</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>馬來西亞</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>西方</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>亞洲</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>450</y>
+       <width>81</width>
+       <height>62</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="checkbutton_verticalLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <item>
+       <widget class="QPushButton" name="pushButton_OK">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>OK</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_Cancel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>380</y>
+       <width>127</width>
+       <height>62</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="lang_verticalLayout">
+      <item>
+       <widget class="QLabel" name="lang_label">
+        <property name="text">
+         <string>語言</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox_lang">
+        <item>
+         <property name="text">
+          <string>本地</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>簡中</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>日文</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>英文</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QListWidget" name="lyris_listWidget">
@@ -639,15 +704,43 @@
      </property>
     </widget>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>360</y>
+      <x>270</x>
+      <y>270</y>
       <width>611</width>
-      <height>261</height>
+      <height>371</height>
      </rect>
     </property>
+    <property name="columnCount">
+     <number>5</number>
+    </property>
+    <column>
+     <property name="text">
+      <string>Rank</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Song</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Artist</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Album</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ReleaseDate</string>
+     </property>
+    </column>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

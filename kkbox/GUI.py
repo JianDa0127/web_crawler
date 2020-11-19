@@ -43,7 +43,7 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.setupUi(self)
         self.init_action()
         self.init_player_botton()
-        self.init_web＿crawler_botton()
+        # self.init_web_crawler_botton()
 
         # icon來源
         # Icons made by <ahref="https://www.flaticon.com/authors/bqlqn"title = "bqlqn">bqlqn</a>
@@ -57,6 +57,8 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         ## 初始化歌名與顯示區塊
         self.now_playing_song.setText('Unknown')
         self.show_result_label.setText('This place will show the search result')
+        test_pic = QtGui.QPixmap('IMG_1065.JPG')
+        self.picture_label.setPixmap(test_pic)
 
         ## 歌詞列表設置
         self.lyris_listWidget.hide()
@@ -90,7 +92,8 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.playlist_listWidget.itemDoubleClicked.connect(self.Music_Player)
         # 取得搜尋欄的輸入
         self.pushButton_search.clicked.connect(self.search_result)
-        # 取得comboBox_place, comboBox_release, comboBox_lang選取的值
+
+        # 取得爬蟲參數
         self.pushButton_OK.clicked.connect(self.get_comboBoxValue)
 
     def init_action(self):
@@ -116,9 +119,9 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.pushButton_playlist.clicked.connect(self.playlist_setting)
         self.song_Slider.sliderMoved.connect(self.update_position_func)
 
-    def init_web＿crawler_botton(self):
-        # self.pushBotton_local.clicked.connnct()
-        self.pushButton_online.clicked.connect(self.twtop50)
+    def init_web_crawler_botton(self):
+        self.pushBotton_local.clicked.connnct()
+        self.pushButton_online.clicked.connect()
 
     def Music_Player(self, song_name):
         self.now_playing_song.setText(song_name.text())
@@ -205,17 +208,28 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.search_lineEdit.clear()
 
     def get_comboBoxValue(self):
-        # 取得地區,歌曲類型,歌曲語言
-        place_select_value = self.comboBox_place.currentText()
-        release_select_value = self.comboBox_release.currentText()
+        # 預設字典
+        songtype = {'單曲': 'song', '新歌': 'newrelease'}
+        area = {'台灣': 'tw', '香港': 'hk', '日本': 'jp', '新加坡': 'sg', '馬來西亞': 'my'}
+        lang = {'本地': 'tc', '簡中': 'sc', '日文': 'ja', '英文': 'en', '馬來西亞': 'ms'}
+        cate = {'華語': '297', '西洋': '390', '日語': '308', '韓語': '314', '台語': '304', '粵語': '320',
+                '綜合': '104', '馬來西亞': '917', '西方': '771', '亞洲': '861'}
+        # 取得選取參數
+        songtype_select_value = self.comboBox_songtype.currentText()
+        area_select_value = self.comboBox_area.currentText()
         lang_select_value = self.comboBox_lang.currentText()
-        select_result_text = '{}+{}+{}'.format(place_select_value, release_select_value, lang_select_value)
-        print(select_result_text)
-        self.textBrowser.setText(select_result_text)
+        cate_select_value = self.comboBox_cate.currentText()
 
-    def twtop50(self):
-        print(KKboxCrawler.KKboxCrawler('song', 'tw', 'tc', '50', '297', DBY))
-        
+        select_result_text = '{}+{}+{}+{}'.format(songtype_select_value, area_select_value, lang_select_value, cate_select_value)
+        print(select_result_text)
+
+        # print(songtype[songtype_select_value])
+        # print(area[area_select_value])
+        # print(lang[lang_select_value])
+        # print(cate[cate_select_value])
+
+        # print(KKboxCrawler.KKboxCrawler('songtype[songtype_select_value]', 'area[area_select_value]',
+        #                                 'lang[lang_select_value]', '50', 'cate[cate_select_value]', DBY))
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

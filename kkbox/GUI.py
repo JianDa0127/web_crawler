@@ -45,7 +45,8 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.player = QMediaPlayer(self)
         ## 初始化歌名與顯示區塊
         self.now_playing_song.setText('Unknown')
-        self.show_result_label.setText('Unknown')
+        self.show_result_label.setText('This place will show the search result')
+        self.show_result_label_2.setText('This place will show the select result')
 
         ## 歌詞列表設置
         self.lyris_listWidget.hide()
@@ -185,9 +186,8 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.player.setVolume(value)
 
     def search_result(self):
-        result_text = self.search_lineEdit.text()
-        print(result_text)
-        self.show_result_label.setText(result_text)
+        search_result_text = self.search_lineEdit.text()
+        self.show_result_label.setText(search_result_text)
         self.search_lineEdit.clear()
 
     def get_comboBoxValue(self):
@@ -195,10 +195,9 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         place_select_value = self.comboBox_place.currentText()
         release_select_value = self.comboBox_release.currentText()
         lang_select_value = self.comboBox_lang.currentText()
-
-        print(place_select_value)
-        print(release_select_value)
-        print(lang_select_value)
+        select_result_text = '{}+{}+{}'.format(place_select_value, release_select_value, lang_select_value)
+        print(select_result_text)
+        self.show_result_label_2.setText(select_result_text)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

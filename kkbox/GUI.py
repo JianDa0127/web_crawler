@@ -2,8 +2,18 @@ import time
 import unittest
 import os
 import sys
+import json
+import requests
+import datetime
+import KKboxCrawler
+
 # 測試介面檔位址
-# sys.path.append('/Users/glow/Desktop/IECS/Data_Science_and_GUI/group_demo/web_crawler/kkbox/UI_Designer')
+sys.path.append('/Users/glow/Desktop/IECS/Data_Science_and_GUI/group_demo/web_crawler/kkbox/UI_Designer')
+#設定日期
+Yday = (datetime.date.today() + datetime.timedelta(days=-1)).strftime('%Y-%m-%d')
+#print(Yday)
+DBY = (datetime.date.today() + datetime.timedelta(days=-2)).strftime('%Y-%m-%d')
+#print(DBY)
 
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import *
@@ -15,11 +25,11 @@ from main_screen import Ui_MainWindow
 
 # 設定路徑
 current_dir = os.path.dirname(os.path.abspath(__file__))
-music_dir = current_dir + r'/music_data'
-# music_dir = current_dir + r'/Ui_Designer/music_data'
+# music_dir = current_dir + r'/music_data'
+music_dir = current_dir + r'/Ui_Designer/music_data'
 music_files = os.listdir(music_dir)
-image_dir = current_dir + r'/icon'
-# image_dir = current_dir + r'/Ui_Designer/icon'
+# image_dir = current_dir + r'/icon'
+image_dir = current_dir + r'/Ui_Designer/icon'
 
 print(current_dir)
 print(music_dir)
@@ -32,7 +42,8 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         super(MainWindow, self).__init__()
         self.setupUi(self)
         self.init_action()
-        self.init_botton()
+        self.init_player_botton()
+        self.init_web＿crawler_botton()
 
         # icon來源
         # Icons made by <ahref="https://www.flaticon.com/authors/bqlqn"title = "bqlqn">bqlqn</a>
@@ -46,7 +57,6 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         ## 初始化歌名與顯示區塊
         self.now_playing_song.setText('Unknown')
         self.show_result_label.setText('This place will show the search result')
-        self.show_result_label_2.setText('This place will show the select result')
 
         ## 歌詞列表設置
         self.lyris_listWidget.hide()
@@ -95,7 +105,7 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.actionRepeat.triggered.connect(self.Music_mode_repeat)
         # self.actionVolume_Up.triggered.connect(self)
         # self.actionVolume_Down.triggered.connect(self)
-    def init_botton(self):
+    def init_player_botton(self):
         # 播放器按鈕設置
         self.pushButton_play.clicked.connect(self.playMusic)
         self.pushButton_previous.clicked.connect(self.previousMusic)
@@ -105,6 +115,10 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.pushButton_lyris.clicked.connect(self.lyris_setting)
         self.pushButton_playlist.clicked.connect(self.playlist_setting)
         self.song_Slider.sliderMoved.connect(self.update_position_func)
+
+    def init_web＿crawler_botton(self):
+        # self.pushBotton_local.clicked.connnct()
+        self.pushButton_online.clicked.connect(self.twtop50)
 
     def Music_Player(self, song_name):
         self.now_playing_song.setText(song_name.text())
@@ -197,7 +211,11 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         lang_select_value = self.comboBox_lang.currentText()
         select_result_text = '{}+{}+{}'.format(place_select_value, release_select_value, lang_select_value)
         print(select_result_text)
-        self.show_result_label_2.setText(select_result_text)
+        self.textBrowser.setText(select_result_text)
+
+    def twtop50(self):
+        print(KKboxCrawler.KKboxCrawler('song', 'tw', 'tc', '50', '297', DBY))
+        
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

@@ -401,169 +401,6 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>160</y>
-       <width>106</width>
-       <height>62</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="area_verticalLayout">
-      <item>
-       <widget class="QLabel" name="area_label">
-        <property name="text">
-         <string>地區</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="comboBox_area">
-        <item>
-         <property name="text">
-          <string>台灣</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>香港</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>日本</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>新加坡</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>馬來西亞</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>240</y>
-       <width>127</width>
-       <height>62</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="release_verticalLayout">
-      <item>
-       <widget class="QLabel" name="songtype_label">
-        <property name="text">
-         <string>類型</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="comboBox_songtype">
-        <item>
-         <property name="text">
-          <string>新歌</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>單曲</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>310</y>
-       <width>111</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="cate_verticalLayout">
-      <item>
-       <widget class="QLabel" name="cate_label">
-        <property name="text">
-         <string>曲風</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="comboBox_cate">
-        <item>
-         <property name="text">
-          <string>華語</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>西洋</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>日語</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>韓語</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>台語</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>粵語</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>綜合</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>馬來西亞</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>西方</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>亞洲</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
        <x>80</x>
        <y>450</y>
        <width>81</width>
@@ -602,49 +439,250 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="layoutWidget">
+    <widget class="QWidget" name="gridLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>380</y>
-       <width>127</width>
-       <height>62</height>
+       <x>0</x>
+       <y>190</y>
+       <width>251</width>
+       <height>201</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="lang_verticalLayout">
-      <item>
-       <widget class="QLabel" name="lang_label">
-        <property name="text">
-         <string>語言</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="1">
+       <layout class="QVBoxLayout" name="lang_verticalLayout">
+        <item>
+         <widget class="QLabel" name="lang_label">
+          <property name="text">
+           <string>語言</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox_lang">
+          <item>
+           <property name="text">
+            <string>本地</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>簡中</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>日文</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>英文</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
       </item>
-      <item>
-       <widget class="QComboBox" name="comboBox_lang">
+      <item row="1" column="0">
+       <layout class="QVBoxLayout" name="cate_verticalLayout">
         <item>
-         <property name="text">
-          <string>本地</string>
-         </property>
+         <widget class="QLabel" name="cate_label">
+          <property name="text">
+           <string>曲風</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
         <item>
-         <property name="text">
-          <string>簡中</string>
-         </property>
+         <widget class="QComboBox" name="comboBox_cate">
+          <item>
+           <property name="text">
+            <string>華語</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>西洋</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>日語</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>韓語</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>台語</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>粵語</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>綜合</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>馬來西亞</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>西方</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>亞洲</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1">
+       <layout class="QVBoxLayout" name="release_verticalLayout">
+        <item>
+         <widget class="QLabel" name="songtype_label">
+          <property name="text">
+           <string>類型</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
         <item>
-         <property name="text">
-          <string>日文</string>
-         </property>
+         <widget class="QComboBox" name="comboBox_songtype">
+          <item>
+           <property name="text">
+            <string>新歌</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>單曲</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="0">
+       <layout class="QVBoxLayout" name="area_verticalLayout">
+        <item>
+         <widget class="QLabel" name="area_label">
+          <property name="text">
+           <string>地區</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </item>
         <item>
-         <property name="text">
-          <string>英文</string>
-         </property>
+         <widget class="QComboBox" name="comboBox_area">
+          <item>
+           <property name="text">
+            <string>台灣</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>香港</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>日本</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>新加坡</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>馬來西亞</string>
+           </property>
+          </item>
+         </widget>
         </item>
-       </widget>
+       </layout>
+      </item>
+      <item row="2" column="0">
+       <layout class="QVBoxLayout" name="rank_verticalLayout">
+        <item>
+         <widget class="QLabel" name="rank_label">
+          <property name="text">
+           <string>排名</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox_rank">
+          <item>
+           <property name="text">
+            <string>5</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>10</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>50</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="1">
+       <layout class="QVBoxLayout" name="date_verticalLayout">
+        <item>
+         <widget class="QLabel" name="date_label">
+          <property name="text">
+           <string>時間</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateEdit" name="dateEdit">
+          <property name="date">
+           <date>
+            <year>2020</year>
+            <month>11</month>
+            <day>19</day>
+           </date>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>

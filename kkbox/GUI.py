@@ -9,11 +9,6 @@ import KKboxCrawler
 
 # 測試介面檔位址
 sys.path.append('/Users/glow/Desktop/IECS/Data_Science_and_GUI/group_demo/web_crawler/kkbox/UI_Designer')
-#設定日期
-Yday = (datetime.date.today() + datetime.timedelta(days=-1)).strftime('%Y-%m-%d')
-#print(Yday)
-DBY = (datetime.date.today() + datetime.timedelta(days=-2)).strftime('%Y-%m-%d')
-#print(DBY)
 
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import *
@@ -43,6 +38,8 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.setupUi(self)
         self.init_action()
         self.init_player_botton()
+        # 日期初始化
+        self.dateEdit.setDate(QDate.currentDate())
         # self.init_web_crawler_botton()
 
         # icon來源
@@ -219,17 +216,26 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         area_select_value = self.comboBox_area.currentText()
         lang_select_value = self.comboBox_lang.currentText()
         cate_select_value = self.comboBox_cate.currentText()
-
-        select_result_text = '{}+{}+{}+{}'.format(songtype_select_value, area_select_value, lang_select_value, cate_select_value)
-        print(select_result_text)
-
+        rank_select_value = self.comboBox_rank.currentText()
+        date = self.dateEdit.date()
         # print(songtype[songtype_select_value])
         # print(area[area_select_value])
         # print(lang[lang_select_value])
         # print(cate[cate_select_value])
+        # print(rank_select_value)
+        # print(date.toString(Qt.ISODate))
 
-        # print(KKboxCrawler.KKboxCrawler('songtype[songtype_select_value]', 'area[area_select_value]',
-        #                                 'lang[lang_select_value]', '50', 'cate[cate_select_value]', DBY))
+        # 抓取爬蟲資料
+        Crawler_data = KKboxCrawler.KKboxCrawler(songtype[songtype_select_value], area[area_select_value],
+                                                 lang[lang_select_value], rank_select_value, cate[cate_select_value],
+                                                 date.toString(Qt.ISODate))
+        print(Crawler_data)
+
+        # 將爬蟲資料丟進主畫面
+        self.tableWidget.setRowCount(int(rank_select_value, base=10))
+        for i in range(0, int(rank_select_value, base=10)): #row
+            for j in range(0, 5): #col
+                self.tableWidget.setItem(i, j, QTableWidgetItem("i+j")) #將資料加入指定的表格位置
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

@@ -16,8 +16,8 @@ import datetime
 Yday = (datetime.date.today() + datetime.timedelta(days=-1)).strftime('%Y-%m-%d')
 #print(Yday)
 DBY = (datetime.date.today() + datetime.timedelta(days=-2)).strftime('%Y-%m-%d')
-#print(DBY)
-
+print(DBY)
+print(type(DBY))
 #前天華語單曲日榜
 print(KKboxCrawler.KKboxCrawler('song','tw','tc','50','297',DBY))
 

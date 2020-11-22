@@ -6,7 +6,7 @@ import json
 import requests
 import datetime
 import numpy as np
-import pandas as pd
+import qtawesome
 import KKboxCrawler
 
 # 測試介面檔位址
@@ -43,21 +43,43 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         # 日期初始化
         self.dateEdit.setDate(QDate.currentDate())
         # self.init_web_crawler_botton()
+        os.makedirs('./img/', exist_ok=True)
+
+        #GUI美化
+        self.centralwidget.setStyleSheet(
+            '''
+            QPushButton{border:1px solid #B95754 ;border-radius:15px}
+            QLineEdit{border:1px solid white; border-radius:10px;}
+            '''
+        )
+        self.widget_2.setStyleSheet(
+            '''
+            QPushButton{border:None}
+            '''
+        )
+        self.widget_3.setStyleSheet(
+            '''
+            QPushButton{border:None}
+            '''
+        )
+        self.widget_5.setStyleSheet(
+            '''
+            QPushButton{border:1px solid #B95754 ;border-radius:15px}
+            '''
+        )
 
         # icon來源
         # Icons made by <ahref="https://www.flaticon.com/authors/bqlqn"title = "bqlqn">bqlqn</a>
         # from<ahref = "https://www.flaticon.com/"title = "Flaticon">www.flaticon.com</a>
 
         # 播放器
-        # self.fileName = ""
-        # self.now_playing_song = ''
         self.playlist = QMediaPlaylist(self)
         self.player = QMediaPlayer(self)
         ## 初始化歌名與顯示區塊
         self.now_playing_song.setText('Unknown')
         self.show_result_label.setText('This place will show the search result')
-        # test_pic = QtGui.QPixmap('IMG_1065.JPG')
-        # self.picture_label.setPixmap(test_pic)
+        test_pic = QtGui.QPixmap('IMG_1065.JPG')
+        self.picture_label.setPixmap(test_pic)
 
         ## 歌詞列表設置
         self.lyris_listWidget.hide()
@@ -105,8 +127,6 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.actionPrevious.triggered.connect(self.previousMusic)
         self.actionSuffle.triggered.connect(self.Music_mode_random)
         self.actionRepeat.triggered.connect(self.Music_mode_repeat)
-        # self.actionVolume_Up.triggered.connect(self)
-        # self.actionVolume_Down.triggered.connect(self)
     def init_player_botton(self):
         # 播放器按鈕設置
         self.pushButton_play.clicked.connect(self.playMusic)
@@ -220,27 +240,26 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         cate_select_value = self.comboBox_cate.currentText()
         rank_select_value = self.comboBox_rank.currentText()
         date = self.dateEdit.date()
-        # print(songtype[songtype_select_value])
-        # print(area[area_select_value])
-        # print(lang[lang_select_value])
-        # print(cate[cate_select_value])
-        # print(rank_select_value)
-        # print(date.toString(Qt.ISODate))
-
-
         # 抓取爬蟲資料
         Crawler_data = KKboxCrawler.KKboxCrawler(songtype[songtype_select_value], area[area_select_value],
                                                  lang[lang_select_value], rank_select_value, cate[cate_select_value],
                                                  date.toString(Qt.ISODate))
         # print(Crawler_data)
         data_array = np.array(Crawler_data)
+
         # print(data_array)   #一維陣列
         # 將爬蟲資料丟進主畫面
         row_number = int(rank_select_value, base=10)
         self.tableWidget.setRowCount(row_number)
 
         for i in range(0, len(data_array)):
+            # 設定key
             data_key = list(data_array[i].keys())
+            # 一併抓取圖片
+            r = requests.get('https://i.kfs.io/album/{}/fit/160x160.jpg'.format(data_array[i]['ImgURL']))
+            with open('./img/{}.jpg'.format(data_array[i]['SongID']), 'wb') as f:
+                f.write(r.content)
+
             for j in range(0, 7):
                 self.tableWidget.setItem(i, j, QTableWidgetItem(str(data_array[i][data_key[j]])))
 

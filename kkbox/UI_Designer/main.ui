@@ -445,7 +445,7 @@
        <x>0</x>
        <y>190</y>
        <width>251</width>
-       <height>201</height>
+       <height>221</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
@@ -752,7 +752,7 @@
      </rect>
     </property>
     <property name="columnCount">
-     <number>5</number>
+     <number>7</number>
     </property>
     <column>
      <property name="text">
@@ -772,6 +772,16 @@
     <column>
      <property name="text">
       <string>Album</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ImgURL</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>SongID</string>
      </property>
     </column>
     <column>

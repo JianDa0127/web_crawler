@@ -5,6 +5,8 @@ import sys
 import json
 import requests
 import datetime
+import numpy as np
+import pandas as pd
 import KKboxCrawler
 
 # 測試介面檔位址
@@ -26,10 +28,10 @@ music_files = os.listdir(music_dir)
 # image_dir = current_dir + r'/icon'
 image_dir = current_dir + r'/Ui_Designer/icon'
 
-print(current_dir)
-print(music_dir)
-print(music_files)
-print(image_dir)
+# print(current_dir)
+# print(music_dir)
+# print(music_files)
+# print(image_dir)
 
 class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self):
@@ -54,8 +56,8 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         ## 初始化歌名與顯示區塊
         self.now_playing_song.setText('Unknown')
         self.show_result_label.setText('This place will show the search result')
-        test_pic = QtGui.QPixmap('IMG_1065.JPG')
-        self.picture_label.setPixmap(test_pic)
+        # test_pic = QtGui.QPixmap('IMG_1065.JPG')
+        # self.picture_label.setPixmap(test_pic)
 
         ## 歌詞列表設置
         self.lyris_listWidget.hide()
@@ -80,8 +82,8 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         for i in music_files:
             self.media_list.append('{}/{}'.format(music_dir, i))
 
-        for m in self.media_list:
-            self.playlist.addMedia(QMediaContent(QUrl.fromLocalFile(m)))
+        for m in range(len(self.media_list)):
+            self.playlist.addMedia(QMediaContent(QUrl.fromLocalFile(self.media_list[m])))
         self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
         self.playlist_listWidget.addItems([m.split('/')[-1] for m in self.media_list])
         self.playlist.setCurrentIndex(self.playlist_listWidget.currentRow())
@@ -225,17 +227,22 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         # print(rank_select_value)
         # print(date.toString(Qt.ISODate))
 
+
         # 抓取爬蟲資料
         Crawler_data = KKboxCrawler.KKboxCrawler(songtype[songtype_select_value], area[area_select_value],
                                                  lang[lang_select_value], rank_select_value, cate[cate_select_value],
                                                  date.toString(Qt.ISODate))
-        print(Crawler_data)
-
+        # print(Crawler_data)
+        data_array = np.array(Crawler_data)
+        # print(data_array)   #一維陣列
         # 將爬蟲資料丟進主畫面
-        self.tableWidget.setRowCount(int(rank_select_value, base=10))
-        for i in range(0, int(rank_select_value, base=10)): #row
-            for j in range(0, 5): #col
-                self.tableWidget.setItem(i, j, QTableWidgetItem("i+j")) #將資料加入指定的表格位置
+        row_number = int(rank_select_value, base=10)
+        self.tableWidget.setRowCount(row_number)
+
+        for i in range(0, len(data_array)):
+            data_key = list(data_array[i].keys())
+            for j in range(0, 7):
+                self.tableWidget.setItem(i, j, QTableWidgetItem(str(data_array[i][data_key[j]])))
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

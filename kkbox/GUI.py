@@ -7,7 +7,7 @@ import requests
 import datetime
 import numpy as np
 import qtawesome
-import KKboxCrawler
+from KKboxCrawler import KKboxCrawler
 
 # 測試介面檔位址
 sys.path.append('/Users/glow/Desktop/IECS/Data_Science_and_GUI/group_demo/web_crawler/kkbox/UI_Designer')
@@ -19,19 +19,85 @@ from PyQt5.QtCore import *
 from PyQt5.QtMultimedia import *
 from PyQt5.Qt import QUrl
 from main_screen import Ui_MainWindow
+from selenium import webdriver
+from urllib.request import urlretrieve
 
 # 設定路徑
 current_dir = os.path.dirname(os.path.abspath(__file__))
-# music_dir = current_dir + r'/music_data'
-music_dir = current_dir + r'/Ui_Designer/music_data'
+music_dir = current_dir + r'/music_data'
+# music_dir = current_dir + r'/Ui_Designer/music_data'
 music_files = os.listdir(music_dir)
-# image_dir = current_dir + r'/icon'
-image_dir = current_dir + r'/Ui_Designer/icon'
+image_dir = current_dir + r'/icon'
+# image_dir = current_dir + r'/Ui_Designer/icon'
 
-# print(current_dir)
-# print(music_dir)
-# print(music_files)
-# print(image_dir)
+print(current_dir)
+print(music_dir)
+print(music_files)
+print(image_dir)
+
+def get_audio(SongType, Area, Lang, Rank, Cate, Date):
+    # 背景執行
+    # url = 'https://kma.kkbox.com/charts/daily/{}?cate={}&date={}&lang={}&terr={}'.format(SongType,Cate,Date,Lang,Area)
+    # options = webdriver.ChromeOptions()
+    # options.add_argument('--headless')
+    # browser = webdriver.Chrome(chrome_options=options, executable_path="./chromedriver.exe") # 背景執行
+    # browser.get(url)
+
+    url = 'https://kma.kkbox.com/charts/daily/{}?cate={}&date={}&lang={}&terr={}'.format(SongType, Cate, Date, Lang,
+                                                                                         Area)
+    browser = webdriver.Chrome()
+    browser.get(url)
+
+    # 建立資料夾存放試聽檔
+    AudioPath = "audio"
+    if not os.path.isdir(AudioPath):  # 檢查資料夾是否存在
+        os.mkdir(AudioPath)
+    # 建立資料夾存放歌詞
+    lyricsPath = "lyrics"
+    if not os.path.isdir(lyricsPath):  # 檢查資料夾是否存在
+        os.mkdir(lyricsPath)
+
+    Rank = int(Rank) + 1 if int(Rank) > 30 else int(Rank)
+    for i in range(2, Rank + 2):
+        if i == 32: continue  # 跳過例外
+        # 單曲頁面
+        browser.find_element_by_xpath(
+            "/html/body/div[3]/div/div[2]/ul/li[{}]/a/div/div[1]/span[1]/span[1]".format(i)).click()
+        browser.implicitly_wait(5)
+
+        # 試聽檔案
+        browser.find_element_by_xpath("/html/body/div[5]/div[2]/div[2]/div[1]/div/button[1]").click()
+        browser.implicitly_wait(5)
+        audio = browser.find_element_by_tag_name('audio')  # 試聽檔案位置
+
+        # 儲存試聽檔案
+        song_name = browser.find_element_by_xpath('/html/body/div[5]/div[2]/div[2]/div[1]/h1').text
+        song_name = song_name.split(' -')[0].split(' (')[0].replace('?', '')
+        artist_name = browser.find_element_by_xpath('/html/body/div[5]/div[2]/div[1]/div[1]/div/dl/dd/a').text
+
+        try:
+            urlretrieve(audio.get_attribute('src'),
+                        os.path.join(AudioPath, "30s-{}-{}.mp3".format(song_name, artist_name)))
+            # urlretrieve(audio.get_attribute('src'),"30s_{:02d}-{}.mp3".format(i-2 if i>32 else i-1,song_name))
+            time.sleep(1)  # 確保下載完整
+            # print('[Success 30s download]',song_name)
+        except:
+            print('[Fail 30s download]', song_name)
+            pass
+
+        # 儲存歌詞檔案
+        try:
+            lyrics = browser.find_element_by_xpath('/html/body/div[5]/div[2]/div[2]/div[1]/p').text
+            f = open(lyricsPath + "\\" + '{}-{}.txt'.format(song_name, artist_name), 'w', encoding="utf-8")
+            f.write(lyrics)
+            f.close()
+        except:
+            print('[Fail download]', song_name)
+            pass
+
+        browser.back()  # 上一頁
+    # 關瀏覽器
+    browser.close()
 
 class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self):
@@ -241,13 +307,16 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         rank_select_value = self.comboBox_rank.currentText()
         date = self.dateEdit.date()
         # 抓取爬蟲資料
-        Crawler_data = KKboxCrawler.KKboxCrawler(songtype[songtype_select_value], area[area_select_value],
-                                                 lang[lang_select_value], rank_select_value, cate[cate_select_value],
-                                                 date.toString(Qt.ISODate))
+        Crawler_data = KKboxCrawler(songtype[songtype_select_value], area[area_select_value],
+                                    lang[lang_select_value], rank_select_value, cate[cate_select_value],
+                                    date.toString(Qt.ISODate))
         # print(Crawler_data)
         data_array = np.array(Crawler_data)
+        # 一併抓取視聽檔案, 抓取歌詞
+        # 測試 get_audio(SongType, Area, Lang, Rank, Cate, Date)
+        get_audio(songtype[songtype_select_value], area[area_select_value], lang[lang_select_value], rank_select_value,
+                  cate[cate_select_value], date.toString(Qt.ISODate))
 
-        # print(data_array)   #一維陣列
         # 將爬蟲資料丟進主畫面
         row_number = int(rank_select_value, base=10)
         self.tableWidget.setRowCount(row_number)
@@ -255,13 +324,17 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         for i in range(0, len(data_array)):
             # 設定key
             data_key = list(data_array[i].keys())
+            # 建立試聽按鈕
+            # self.pushButton_lis[i] = QPushButton
+            # self.tableWidget.setItem(i, 1, QTableWidgetItem(self.pushButton_lis[i]))
             # 一併抓取圖片
             r = requests.get('https://i.kfs.io/album/{}/fit/160x160.jpg'.format(data_array[i]['ImgURL']))
             with open('./img/{}.jpg'.format(data_array[i]['SongID']), 'wb') as f:
                 f.write(r.content)
 
+            # 將爬蟲資料丟進table中
             for j in range(0, 7):
-                self.tableWidget.setItem(i, j, QTableWidgetItem(str(data_array[i][data_key[j]])))
+                self.tableWidget.setItem(i, j+1, QTableWidgetItem(str(data_array[i][data_key[j]])))
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

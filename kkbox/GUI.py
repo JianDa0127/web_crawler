@@ -144,7 +144,7 @@ class MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         ## 初始化歌名與顯示區塊
         self.now_playing_song.setText('Unknown')
         self.show_result_label.setText('This place will show the search result')
-        test_pic = QtGui.QPixmap('IMG_1065.JPG')
+        test_pic = QtGui.QPixmap('IMG_1300.JPG')
         self.picture_label.setPixmap(test_pic)
 
         ## 歌詞列表設置
